@@ -20,7 +20,7 @@
 ## 현재 상태
 
 - [x] **Step 0** — 기획 & 로드맵 확정 (이 문서)
-- [ ] Step 1 — 레퍼런스 분석 & 디자인 컨셉
+- [x] **Step 1** — 레퍼런스 분석 & 디자인 컨셉 ([design-concept](./docs/design-concept.md) · [sitemap](./docs/sitemap.md))
 - [ ] Step 2 — 콘텐츠 수집 & 정리
 - [ ] Step 3 — 홈페이지 뼈대 + 1차 배포
 - [ ] Step 4 — 디자인 스타일링 & 반응형
