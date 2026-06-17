@@ -84,7 +84,7 @@
   var revealEls = document.querySelectorAll(
     ".section-eyebrow, .section-title, .section-lead, .about-grid, .target-box, " +
       ".space-card, .price-card, .benefit-highlight, .benefit-grid li, " +
-      ".review-card, .location-grid, .location-photo, .contact-actions, .placeholder-block"
+      ".location-grid, .location-photo, .contact-actions, .reviews-more"
   );
   if ("IntersectionObserver" in window && revealEls.length) {
     revealEls.forEach(function (el, i) {
@@ -106,6 +106,139 @@
     revealEls.forEach(function (el) {
       io.observe(el);
     });
+  }
+
+  /* ---------- 4-b. 후기 셔플 + 자동 로테이션 ----------
+     - 고정 숫자 없이, 방문자 리뷰 풀(.review-card)에서 일부만 노출
+     - 페이지 진입 시 매번 셔플 → 매 방문마다 다른 후기 조합
+     - 화면에 보일 때만 일정 간격으로 한 장씩 부드럽게 교체 */
+  var reviewGrid = document.querySelector(".review-grid");
+  if (reviewGrid) {
+    var pool = Array.prototype.slice.call(
+      reviewGrid.querySelectorAll(".review-card")
+    );
+
+    function shuffle(arr) {
+      for (var i = arr.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
+      }
+      return arr;
+    }
+
+    // 표시 개수: 화면 폭에 맞춰 (그리드 칼럼 수와 동일하게 깔끔히 채움)
+    function visibleCount() {
+      var w = window.innerWidth;
+      if (w <= 640) return 3; // 1열 × 3
+      if (w <= 880) return 4; // 2열 × 2
+      return 6; // 3열 × 2
+    }
+
+    var reduceMotion =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (pool.length > 1) {
+      shuffle(pool);
+      // 모든 카드를 그리드에서 분리 후 JS로 재배치
+      pool.forEach(function (c) {
+        if (c.parentNode) c.parentNode.removeChild(c);
+      });
+
+      var shown = []; // 현재 화면에 표시 중인 카드
+      var queueIndex = 0; // pool 순환 인덱스
+
+      function nextFromPool() {
+        var card = pool[queueIndex % pool.length];
+        queueIndex++;
+        return card;
+      }
+
+      function fillInitial() {
+        reviewGrid.innerHTML = "";
+        shown = [];
+        var n = Math.min(visibleCount(), pool.length);
+        for (var i = 0; i < n; i++) {
+          var card = nextFromPool();
+          card.classList.remove("is-out");
+          card.classList.add("is-in");
+          reviewGrid.appendChild(card);
+          shown.push(card);
+        }
+      }
+      fillInitial();
+
+      // 한 장씩 교체 (예비 카드가 있을 때만)
+      function rotateOnce() {
+        if (pool.length <= shown.length) return;
+        var slot = Math.floor(Math.random() * shown.length);
+        var oldCard = shown[slot];
+
+        var newCard = nextFromPool();
+        var guard = 0;
+        while (shown.indexOf(newCard) !== -1 && guard < pool.length) {
+          newCard = nextFromPool();
+          guard++;
+        }
+        if (shown.indexOf(newCard) !== -1) return; // 마땅한 후보 없음
+
+        oldCard.classList.remove("is-in");
+        oldCard.classList.add("is-out");
+        window.setTimeout(function () {
+          if (oldCard.parentNode !== reviewGrid) return;
+          reviewGrid.replaceChild(newCard, oldCard);
+          oldCard.classList.remove("is-out");
+          newCard.classList.remove("is-out");
+          void newCard.offsetWidth; // reflow → 페이드 인 트리거
+          newCard.classList.add("is-in");
+          shown[slot] = newCard;
+        }, 450);
+      }
+
+      var rotateTimer = null;
+      function startRotation() {
+        if (rotateTimer || reduceMotion) return;
+        rotateTimer = window.setInterval(rotateOnce, 4500);
+      }
+      function stopRotation() {
+        if (rotateTimer) {
+          window.clearInterval(rotateTimer);
+          rotateTimer = null;
+        }
+      }
+
+      // 화면에 보일 때만 로테이션 (성능·배터리 절약)
+      if ("IntersectionObserver" in window) {
+        var rio = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) startRotation();
+              else stopRotation();
+            });
+          },
+          { threshold: 0.15 }
+        );
+        rio.observe(reviewGrid);
+      } else {
+        startRotation();
+      }
+
+      // 폭 변경으로 표시 개수가 달라지면 다시 채움
+      var lastVisible = visibleCount();
+      window.addEventListener(
+        "resize",
+        function () {
+          var v = visibleCount();
+          if (v !== lastVisible) {
+            lastVisible = v;
+            fillInitial();
+          }
+        },
+        { passive: true }
+      );
+    }
   }
 
   /* ---------- 5. 갤러리 + 라이트박스 ---------- */

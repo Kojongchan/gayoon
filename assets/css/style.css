@@ -707,16 +707,21 @@ img { max-width: 100%; }
 }
 .contact-naver-desc { color: #cdd5e6; font-size: 1rem; margin-bottom: 22px; }
 
-/* ---------- 향후 단계 플레이스홀더 ---------- */
-.placeholder-block {
-  border: 1px dashed #c7cdd8;
-  border-radius: var(--radius);
-  background: var(--white);
-  color: var(--muted);
-  text-align: center;
-  padding: 30px;
+/* 후기 셔플/로테이션 페이드 */
+.review-card { transition: opacity .45s ease, transform .45s ease; }
+.review-card.is-out { opacity: 0; transform: translateY(10px); }
+.review-card.is-in  { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .review-card { transition: none; }
 }
-.placeholder-block span { display: block; font-size: .82rem; opacity: .8; margin-top: 4px; }
+
+/* 네이버 후기 전체 보기 CTA */
+.reviews-more { text-align: center; margin-top: 34px; }
+.reviews-more-note {
+  font-size: .92rem;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
 
 /* ---------- 플로팅 CTA ---------- */
 .floating-cta {
