@@ -58,13 +58,27 @@
     });
   }
 
-  /* ---------- 3. 헤더 스크롤 그림자 ---------- */
+  /* ---------- 3. 헤더 스크롤 그림자 + 플로팅 CTA ---------- */
+  var floatingCta = document.getElementById("floatingCta");
+  var contactSection = document.getElementById("contact");
+
   function onScroll() {
-    if (!header) return;
-    header.classList.toggle("scrolled", window.scrollY > 8);
+    if (header) header.classList.toggle("scrolled", window.scrollY > 8);
+
+    if (floatingCta) {
+      // Hero를 지나면 노출하되, 문의 섹션이 화면에 보이면 숨김(중복 방지)
+      var pastHero = window.scrollY > window.innerHeight * 0.6;
+      var contactVisible = false;
+      if (contactSection) {
+        var rect = contactSection.getBoundingClientRect();
+        contactVisible = rect.top < window.innerHeight && rect.bottom > 0;
+      }
+      floatingCta.classList.toggle("is-shown", pastHero && !contactVisible);
+    }
   }
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
 
   /* ---------- 4. 스크롤 등장 애니메이션 ---------- */
   var revealEls = document.querySelectorAll(

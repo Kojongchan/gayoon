@@ -668,13 +668,68 @@ img { max-width: 100%; }
 .location-info a { color: var(--navy); font-weight: 700; }
 .location-info a:hover { text-decoration: underline; }
 
+/* 네이버 지도 카드 (iframe 대체) */
+.map-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 220px;
+  padding: clamp(24px, 3vw, 34px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(120% 120% at 85% 15%, #e9eef7 0%, var(--bg-soft) 55%),
+    var(--bg-soft);
+  box-shadow: var(--shadow-sm);
+  transition: transform .25s var(--ease), box-shadow .25s, border-color .25s;
+}
+.map-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+  border-color: #d4dae6;
+}
+.map-card-pin {
+  flex: none;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.9rem;
+  background: var(--white);
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+}
+.map-card-body { display: flex; flex-direction: column; gap: 4px; }
+.map-card-body strong { color: var(--ink); font-size: 1.12rem; }
+.map-card-body span { color: var(--muted); font-size: .95rem; }
+.map-card-link { color: var(--navy-bright) !important; font-weight: 700; margin-top: 6px; }
+
+.location-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
 /* ---------- 문의 CTA ---------- */
 .section-contact {
   background:
     radial-gradient(120% 120% at 50% -10%, var(--navy) 0%, var(--navy-deep) 60%);
 }
 .section-contact .section-eyebrow { color: #aebfe0; }
-.contact-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+.contact-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+.contact-naver {
+  margin-top: 8px;
+  max-width: 620px;
+  background: rgba(255, 255, 255, .07);
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: var(--radius);
+  padding: clamp(26px, 4vw, 36px);
+  backdrop-filter: blur(4px);
+}
+.contact-naver-title { color: var(--white); font-weight: 800; font-size: 1.2rem; margin-bottom: 10px; }
+.contact-naver-desc { color: #cdd5e6; font-size: .98rem; margin-bottom: 22px; }
 
 /* ---------- 향후 단계 플레이스홀더 ---------- */
 .placeholder-block {
@@ -686,19 +741,31 @@ img { max-width: 100%; }
   padding: 30px;
 }
 .placeholder-block span { display: block; font-size: .82rem; opacity: .8; margin-top: 4px; }
-.placeholder-map {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 260px;
-  font-size: 1.1rem;
+
+/* ---------- 플로팅 CTA ---------- */
+.floating-cta {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: var(--navy);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity .3s var(--ease), transform .3s var(--ease), background .2s;
 }
-.placeholder-form {
-  margin-top: 22px;
-  background: rgba(255, 255, 255, .06);
-  color: #cdd5e6;
-  border-color: rgba(255, 255, 255, .28);
-}
+.floating-cta.is-shown { opacity: 1; transform: none; pointer-events: auto; }
+.floating-cta:hover { background: var(--navy-bright); }
+.floating-cta-icon { font-size: 1.15rem; }
 
 /* ---------- 푸터 ---------- */
 .site-footer { background: var(--navy-deep); color: #c5cde0; padding: 52px 0 44px; }
@@ -803,7 +870,18 @@ img { max-width: 100%; }
   .hero-stats { gap: 22px 32px; }
   .btn-row .btn,
   .contact-actions .btn { width: 100%; }
+  .contact-naver { width: 100%; }
   .location-photo { aspect-ratio: 16 / 9; }
+  .location-cta .btn { width: 100%; }
+  .map-card { min-height: 160px; }
+  /* 모바일: 하단 고정 풀폭 CTA 바 */
+  .floating-cta {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    justify-content: center;
+    padding: 15px 18px;
+  }
   .lightbox-nav { width: 42px; height: 42px; font-size: 1.6rem; }
   .lightbox-prev { left: 8px; }
   .lightbox-next { right: 8px; }
