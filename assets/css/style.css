@@ -670,9 +670,11 @@ img { max-width: 100%; }
 
 /* 임베드 지도(카카오 지도 퍼가기) */
 .map-embed-wrap {
+  align-self: start;          /* 그리드 stretch 방지 → 하단 패널이 다시 노출되지 않게 */
+  height: 360px;             /* 지도 영역만 보이도록 고정 */
+  overflow: hidden;          /* 위젯 하단 주소/전화 패널은 잘라서 숨김(정보 중복 제거) */
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  overflow: hidden;
   box-shadow: var(--shadow-sm);
   background: var(--bg-soft);
 }
@@ -847,6 +849,7 @@ img { max-width: 100%; }
   .contact-naver { width: 100%; }
   .location-photo { aspect-ratio: 16 / 9; }
   .location-cta .btn { width: 100%; }
+  .map-embed-wrap { height: 260px; }
   .map-embed-wrap .root_daum_roughmap .wrap_map { height: 260px !important; }
   /* 모바일: 하단 고정 풀폭 CTA 바 */
   .floating-cta {
