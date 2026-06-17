@@ -723,6 +723,76 @@ img { max-width: 100%; }
   margin-bottom: 16px;
 }
 
+/* ---------- 이용 안내 · FAQ ---------- */
+.section-faq { background: var(--bg-soft); }
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+  margin-bottom: 40px;
+}
+.guide-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px 24px;
+  box-shadow: var(--shadow-sm);
+}
+.guide-ico { font-size: 1.8rem; line-height: 1; display: block; margin-bottom: 12px; }
+.guide-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.04rem;
+  color: var(--navy);
+}
+.guide-card p { margin: 0; font-size: .92rem; color: var(--muted); line-height: 1.55; }
+
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.faq-item {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 52px 18px 22px;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 1rem;
+  position: relative;
+  user-select: none;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--navy-bright);
+  transition: transform .25s ease;
+}
+.faq-item[open] summary::after { content: "\2212"; }
+.faq-item summary:hover { color: var(--navy); }
+.faq-item summary:focus-visible { outline: 2px solid var(--navy-bright); outline-offset: -2px; }
+.faq-answer { padding: 0 22px 20px; }
+.faq-answer p { margin: 0; color: var(--text); font-size: .96rem; line-height: 1.65; }
+
+.faq-cta { text-align: center; margin-top: 38px; }
+.faq-cta-note { font-size: 1rem; color: var(--muted); margin-bottom: 16px; }
+.faq-cta .contact-actions { justify-content: center; }
+
 /* ---------- 플로팅 CTA ---------- */
 .floating-cta {
   position: fixed;

@@ -84,7 +84,8 @@
   var revealEls = document.querySelectorAll(
     ".section-eyebrow, .section-title, .section-lead, .about-grid, .target-box, " +
       ".space-card, .price-card, .benefit-highlight, .benefit-grid li, " +
-      ".location-grid, .location-photo, .contact-actions, .reviews-more"
+      ".location-grid, .location-photo, .contact-actions, .reviews-more, " +
+      ".guide-card, .faq-item, .faq-cta"
   );
   if ("IntersectionObserver" in window && revealEls.length) {
     revealEls.forEach(function (el, i) {
