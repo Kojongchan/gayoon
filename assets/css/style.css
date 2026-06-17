@@ -668,42 +668,16 @@ img { max-width: 100%; }
 .location-info a { color: var(--navy); font-weight: 700; }
 .location-info a:hover { text-decoration: underline; }
 
-/* 네이버 지도 카드 (iframe 대체) */
-.map-card {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  min-height: 220px;
-  padding: clamp(24px, 3vw, 34px);
+/* 임베드 지도(구글) */
+.map-embed {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background:
-    radial-gradient(120% 120% at 85% 15%, #e9eef7 0%, var(--bg-soft) 55%),
-    var(--bg-soft);
   box-shadow: var(--shadow-sm);
-  transition: transform .25s var(--ease), box-shadow .25s, border-color .25s;
+  display: block;
 }
-.map-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow);
-  border-color: #d4dae6;
-}
-.map-card-pin {
-  flex: none;
-  width: 64px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.9rem;
-  background: var(--white);
-  border-radius: 50%;
-  box-shadow: var(--shadow-sm);
-}
-.map-card-body { display: flex; flex-direction: column; gap: 4px; }
-.map-card-body strong { color: var(--ink); font-size: 1.12rem; }
-.map-card-body span { color: var(--muted); font-size: .95rem; }
-.map-card-link { color: var(--navy-bright) !important; font-weight: 700; margin-top: 6px; }
 
 .location-cta {
   display: flex;
@@ -718,18 +692,16 @@ img { max-width: 100%; }
     radial-gradient(120% 120% at 50% -10%, var(--navy) 0%, var(--navy-deep) 60%);
 }
 .section-contact .section-eyebrow { color: #aebfe0; }
-.contact-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+.contact-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 .contact-naver {
-  margin-top: 8px;
-  max-width: 620px;
+  max-width: 640px;
   background: rgba(255, 255, 255, .07);
   border: 1px solid rgba(255, 255, 255, .22);
   border-radius: var(--radius);
   padding: clamp(26px, 4vw, 36px);
   backdrop-filter: blur(4px);
 }
-.contact-naver-title { color: var(--white); font-weight: 800; font-size: 1.2rem; margin-bottom: 10px; }
-.contact-naver-desc { color: #cdd5e6; font-size: .98rem; margin-bottom: 22px; }
+.contact-naver-desc { color: #cdd5e6; font-size: 1rem; margin-bottom: 22px; }
 
 /* ---------- 향후 단계 플레이스홀더 ---------- */
 .placeholder-block {
@@ -873,7 +845,7 @@ img { max-width: 100%; }
   .contact-naver { width: 100%; }
   .location-photo { aspect-ratio: 16 / 9; }
   .location-cta .btn { width: 100%; }
-  .map-card { min-height: 160px; }
+  .map-embed { min-height: 220px; }
   /* 모바일: 하단 고정 풀폭 CTA 바 */
   .floating-cta {
     left: 14px;
