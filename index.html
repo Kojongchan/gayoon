@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>슈가맨워크 천호역점 | 천호역 24시간 200평 풀옵션 공유오피스</title>
   <meta name="description" content="슈가맨워크 서울 천호역점 — 천호역 도보 10분, 24시간 운영 200평 풀옵션 공유오피스. 자유석 월 15만원~, 개인실 월 35만원~. 택배 집하장·포토스튜디오로 온라인 셀러에게 특히 좋은 쇼핑몰 특화 공간." />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
@@ -13,11 +15,15 @@
   <header class="site-header">
     <div class="container header-inner">
       <a href="#top" class="logo" aria-label="슈가맨워크 천호역점 홈">SUGARMANWORK</a>
-      <nav class="site-nav" aria-label="주요 메뉴">
+      <button class="nav-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="주요 메뉴">
         <a href="#about">소개</a>
         <a href="#spaces">공간</a>
         <a href="#membership">요금</a>
         <a href="#benefits">혜택</a>
+        <a href="#gallery">갤러리</a>
         <a href="#reviews">후기</a>
         <a href="#location">오시는 길</a>
         <a href="#contact" class="nav-cta">문의하기</a>
@@ -76,8 +82,8 @@
             </ul>
           </div>
           <div class="about-media">
-            <!-- 사진: booth-01.jpg (집중 부스석 + SUGARMANWORK 사인월) -->
-            <div class="ph ph-tall" data-img="assets/images/booth-01.jpg" data-label="booth-01.jpg — 부스석/사인월"></div>
+            <!-- 사진: lounge-02.jpg (집중 부스석 + SUGARMANWORK 사인월) -->
+            <div class="ph ph-tall" data-img="assets/images/lounge-02.jpg" data-label="lounge-02.jpg — 부스석·SUGARMANWORK 사인월"></div>
           </div>
         </div>
 
@@ -115,12 +121,22 @@
           </article>
 
           <article class="space-card">
-            <div class="ph" data-img="assets/images/room-01.jpg" data-label="room-01.jpg — 개인실"></div>
+            <div class="ph" data-img="assets/images/room-1p-01.jpg" data-label="room-1p-01.jpg — 개인실(1인)"></div>
             <div class="space-body">
               <span class="tag tag-member">멤버십</span>
-              <h3>개인실</h3>
+              <h3>개인실 (1인)</h3>
               <p>독립된 룸에 입주, 룸별 도어락으로 24시간 이용. 나만의 공간에서 집중하세요.</p>
               <p class="price-inline">월 35만원~</p>
+            </div>
+          </article>
+
+          <article class="space-card">
+            <div class="ph" data-img="assets/images/room-4p-01.jpg" data-label="room-4p-01.jpg — 다인실/팀룸"></div>
+            <div class="space-body">
+              <span class="tag tag-member">멤버십</span>
+              <h3>다인실 / 팀룸</h3>
+              <p>2~4인 규모의 독립 룸. 소규모 팀이나 빠르게 입주할 스타트업에게 잘 맞습니다.</p>
+              <p class="price-inline">상담 문의</p>
             </div>
           </article>
 
@@ -143,7 +159,7 @@
           </article>
 
           <article class="space-card">
-            <div class="ph" data-img="assets/images/lounge-02.jpg" data-label="lounge-02.jpg — 미팅 라운지"></div>
+            <div class="ph" data-img="assets/images/amenity.jpg" data-label="amenity.jpg — 라운지/탕비실"></div>
             <div class="space-body">
               <span class="tag tag-common">공용</span>
               <h3>라운지 / 탕비실</h3>
@@ -152,15 +168,7 @@
           </article>
 
           <article class="space-card">
-            <div class="ph" data-img="assets/images/booth-01.jpg" data-label="booth-01.jpg — 부스석"></div>
-            <div class="space-body">
-              <span class="tag tag-common">공용</span>
-              <h3>집중 부스석</h3>
-              <p>1인 칸막이 부스(카페형)에 콘센트 구비. 조용히 집중하기 좋은 좌석입니다.</p>
-            </div>
-          </article>
-
-          <article class="space-card space-card--note">
+            <div class="ph" data-img="assets/images/delivery-01.jpg" data-label="delivery-01.jpg — 택배 집하장"></div>
             <div class="space-body">
               <span class="tag tag-special">쇼핑몰 특화</span>
               <h3>택배 집하장</h3>
@@ -248,6 +256,32 @@
       </div>
     </section>
 
+    <!-- ============ 5-2. 갤러리 ============ -->
+    <section class="section section-alt" id="gallery">
+      <div class="container">
+        <p class="section-eyebrow">GALLERY</p>
+        <h2 class="section-title">공간 둘러보기</h2>
+        <p class="section-lead">
+          천호역점의 실제 공간입니다. 사진을 누르면 크게 볼 수 있어요.
+        </p>
+
+        <div class="gallery-grid">
+          <button class="gallery-item gallery-item--wide" data-img="assets/images/hero.jpg" data-caption="개방형 라운지 — 200평 풀옵션 공간"></button>
+          <button class="gallery-item" data-img="assets/images/lounge-02.jpg" data-caption="집중 부스석 · SUGARMANWORK 사인월"></button>
+          <button class="gallery-item" data-img="assets/images/room-1p-01.jpg" data-caption="개인실 (1인)"></button>
+          <button class="gallery-item" data-img="assets/images/room-2p-01.jpg" data-caption="개인실 (2인)"></button>
+          <button class="gallery-item" data-img="assets/images/room-4p-01.jpg" data-caption="다인실 / 팀룸"></button>
+          <button class="gallery-item" data-img="assets/images/meeting-01.jpg" data-caption="회의실"></button>
+          <button class="gallery-item" data-img="assets/images/studio-01.jpg" data-caption="포토 스튜디오 — 조명·배경지"></button>
+          <button class="gallery-item" data-img="assets/images/studio-02.jpg" data-caption="포토 스튜디오 — 화이트 존"></button>
+          <button class="gallery-item" data-img="assets/images/amenity.jpg" data-caption="라운지 / 탕비실"></button>
+          <button class="gallery-item" data-img="assets/images/amenity-printer.jpg" data-caption="OA존 — 복합기·모니터"></button>
+          <button class="gallery-item" data-img="assets/images/delivery-01.jpg" data-caption="택배 집하장"></button>
+          <button class="gallery-item" data-img="assets/images/entrance-01.jpg" data-caption="건물 외관 · 간판"></button>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ 6. 고객 후기 ============ -->
     <section class="section" id="reviews">
       <div class="container">
@@ -314,6 +348,8 @@
         <h2 class="section-title">위치 · 오시는 길</h2>
         <p class="section-lead">천호역(5·8호선)에서 가까운 지하 1층. 짐 옮기기도 편합니다.</p>
 
+        <div class="ph location-photo" data-img="assets/images/entrance-02.jpg" data-label="entrance-02.jpg — 입구"></div>
+
         <div class="location-grid">
           <div class="location-info">
             <dl>
@@ -375,6 +411,17 @@
       </div>
     </div>
   </footer>
+
+  <!-- 갤러리 라이트박스 -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="사진 크게 보기">
+    <button class="lightbox-close" type="button" aria-label="닫기">&times;</button>
+    <button class="lightbox-nav lightbox-prev" type="button" aria-label="이전 사진">&#8249;</button>
+    <figure class="lightbox-figure">
+      <img src="" alt="" class="lightbox-img" />
+      <figcaption class="lightbox-caption"></figcaption>
+    </figure>
+    <button class="lightbox-nav lightbox-next" type="button" aria-label="다음 사진">&#8250;</button>
+  </div>
 
   <script src="assets/js/main.js"></script>
 </body>
