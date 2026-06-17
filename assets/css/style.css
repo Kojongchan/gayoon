@@ -668,16 +668,18 @@ img { max-width: 100%; }
 .location-info a { color: var(--navy); font-weight: 700; }
 .location-info a:hover { text-decoration: underline; }
 
-/* 임베드 지도(구글) */
-.map-embed {
-  width: 100%;
-  height: 100%;
-  min-height: 280px;
+/* 임베드 지도(카카오 지도 퍼가기) */
+.map-embed-wrap {
   border: 1px solid var(--line);
   border-radius: var(--radius);
+  overflow: hidden;
   box-shadow: var(--shadow-sm);
-  display: block;
+  background: var(--bg-soft);
 }
+/* 퍼가기 위젯이 컨테이너 폭을 꽉 채우도록 */
+.map-embed-wrap .root_daum_roughmap { width: 100% !important; }
+.map-embed-wrap .root_daum_roughmap .wrap_map { height: 360px !important; }
+.map-embed-wrap .root_daum_roughmap * { box-sizing: content-box; }
 
 .location-cta {
   display: flex;
@@ -845,7 +847,7 @@ img { max-width: 100%; }
   .contact-naver { width: 100%; }
   .location-photo { aspect-ratio: 16 / 9; }
   .location-cta .btn { width: 100%; }
-  .map-embed { min-height: 220px; }
+  .map-embed-wrap .root_daum_roughmap .wrap_map { height: 260px !important; }
   /* 모바일: 하단 고정 풀폭 CTA 바 */
   .floating-cta {
     left: 14px;
