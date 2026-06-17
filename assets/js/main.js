@@ -23,7 +23,14 @@
       img.alt =
         (ph.getAttribute("data-label") || "").split("—").pop().trim() ||
         "슈가맨워크 천호역점";
-      img.loading = "lazy";
+      img.decoding = "async";
+      // Hero(첫 화면)는 즉시·우선 로드해 LCP 개선, 나머지는 지연 로드
+      if (ph.classList.contains("ph-hero")) {
+        img.loading = "eager";
+        img.setAttribute("fetchpriority", "high");
+      } else {
+        img.loading = "lazy";
+      }
       // 플레이스홀더 안에 채워 넣어 레이아웃 클래스(.ph-tall 등)를 유지
       ph.appendChild(img);
       ph.classList.add("is-loaded");

@@ -234,16 +234,22 @@
 
 ---
 
-## Step 9 — SEO · 성능 · 도메인 · 최종 점검
+## Step 9 — SEO · 성능 · 도메인 · 최종 점검 ✅ (대부분 완료)
 
 **목표:** 검색에 잘 노출되고 빠른, 정식 오픈 가능한 상태로 마무리.
 
-**작업 내용**
-- 메타태그/오픈그래프(카톡 공유 미리보기), 파비콘
-- 네이버/구글 검색 등록, sitemap.xml, 구조화 데이터(LocalBusiness)
-- 이미지 최적화·로딩 속도 점검
-- (선택) 커스텀 도메인 연결 (예: sugarmanwork-cheonho.com)
-- 크로스브라우저·모바일 최종 QA
+**진행 상황 (완료):**
+- [x] 메타태그(description·keywords·author·robots·theme-color) + canonical
+- [x] 오픈그래프 + 트위터 카드 → **카톡/SNS 공유 미리보기**(og:image=hero.jpg)
+- [x] **파비콘**(assets/favicon.svg, 네이비 "S")
+- [x] **sitemap.xml + robots.txt**
+- [x] 구조화 데이터 **LocalBusiness JSON-LD** + **FAQPage JSON-LD**(리치 결과 대응)
+- [x] 성능: Hero 이미지 `preload`+`fetchpriority=high`+`eager`, 그 외 이미지 lazy/decoding async (LCP 개선)
+
+**남은 것 (사용자 작업 필요):**
+- [ ] **네이버 서치어드바이저 / 구글 서치콘솔 사이트 등록**(소유확인 메타·HTML 파일 받으면 반영) — 코드에 자리만 잡으면 됨, 계정 작업은 사장님
+- [ ] (선택) **커스텀 도메인 연결**(예: sugarmanwork-cheonho.com) — 도메인 구매 후 DNS(CNAME) + repo `CNAME` 파일
+- [ ] OG 이미지 권장 규격(1200×630)으로 별도 컷 준비 시 교체(현재 hero.jpg 사용)
 
 **다음 챗 시작 문장:**
 > "Step 9 진행하자. SEO·성능 최적화하고 도메인 연결까지 해서 정식 오픈 준비해줘."
