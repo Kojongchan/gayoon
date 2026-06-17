@@ -47,6 +47,8 @@ body {
   background: var(--bg);
   line-height: 1.7;
   letter-spacing: -0.01em;
+  word-break: keep-all;        /* 한글 단어가 줄바꿈에서 음절 단위로 쪼개지지 않도록 */
+  overflow-wrap: break-word;   /* 긴 URL 등 예외는 줄바꿈 허용 */
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -178,6 +180,23 @@ img { max-width: 100%; }
 .btn-block { display: flex; width: 100%; }
 .btn-lg { padding: 16px 30px; font-size: 1.05rem; }
 .btn-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
+
+/* 어두운(네이비) 배경 위 버튼: 흰색으로 강조해 가시성 확보 */
+.section-contact .btn-primary {
+  background: #fff;
+  color: var(--navy-deep);
+  box-shadow: var(--shadow-lg);
+}
+.section-contact .btn-primary:hover {
+  background: #eaf0fb;
+  color: var(--navy-deep);
+}
+.section-contact .btn-ghost-light {
+  background: rgba(255, 255, 255, .10);
+  border-color: #fff;
+  color: #fff;
+}
+.section-contact .btn-ghost-light:hover { background: rgba(255, 255, 255, .2); }
 
 /* ---------- 이미지 플레이스홀더 ----------
    실제 파일이 들어오면 main.js가 <img>로 교체합니다. */
